@@ -138,29 +138,29 @@ router.put(
 //     usersController.editReview,
 // );
 
-// /**
-// *    @apiGroup Project
-// *    @api {get} /projects/:projectId/getProject Get a project.
-// *    @apiParam {String} id  Project ID required.
-// *    @apiSampleRequest http://localhost:3030/projects/1223frhs/getProject
-// */
-// router.get(
-//     "/projects/:projectId/getProject",
-//     checkExistingModel( "projectId", "Project", "project" ),
-//     projectsController.getProject,
-// );
+/**
+*    @apiGroup Project
+*    @api {get} /projects/:projectId/getProject Get a project.
+*    @apiParam {String} id  Project ID required.
+*    @apiSampleRequest http://localhost:3030/projects/1223frhs/getProject
+*/
+router.get(
+    "/projects/:projectId/getProject",
+    checkExistingModel( "projectId", "Project", "project" ),
+    projectsController.getProject,
+);
 
-// /**
-// *    @apiGroup Project
-// *    @api {get} /projects/getAll/:param Get all projects.
-// *    @apiDescription returns all projects if param is missing, otherwise
-// *    filters by param value (rating, categories)
-// */
-// router.get(
-//     "/projects/getAll/:param?",
-//     checkRequestParameter,
-//     projectsController.getAllProjects,
-// );
+/**
+*    @apiGroup Project
+*    @api {get} /projects/getAll/:param Get all projects.
+*    @apiDescription returns all projects if param is missing, otherwise
+*    filters by param value (rating, categories)
+*/
+router.get(
+    "/projects/getAll/:param?",
+    checkRequestParameter,
+    projectsController.getAllProjects,
+);
 
 module.exports = ( app ) => {
     app.use( "/", router );
