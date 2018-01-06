@@ -36,18 +36,13 @@ projectSchema.methods.addSprint = function( body, author ) {
     return this.sprints.push( sprint );
 };
 
-projectSchema.methods.getReviewIndex = function( reviewId ) {
-    const index = this.reviews.map( review => review.id ).indexOf( reviewId );
+projectSchema.methods.getSprintIndex = function( sprintId ) {
+    const index = this.sprints.map( sprint => sprint.id ).indexOf( sprintId );
     return index;
 };
 
-projectSchema.methods.getReviewForIndex = function( reviewIndex ) {
-    const review = this.reviews[ reviewIndex ];
-    return review;
-};
-
-projectSchema.methods.removeReview = function( reviewIndex ) {
-    this.reviews.splice( reviewIndex, 1 );
+projectSchema.methods.removeSprint = function( sprintIndex ) {
+    this.sprints.splice( sprintIndex, 1 );
 };
 
 projectSchema.methods.addOwner = function( userId ) {
@@ -58,66 +53,11 @@ projectSchema.methods.addId = function( ) {
     this.id = uid( 10 );
 };
 
-projectSchema.methods.addRating = function( rating, author ) {
-    const newRating = {
-        rating,
-        owner: author,
-    };
-    this.ratings.push( newRating );
-};
-
-projectSchema.methods.updateRating = function ( newRating, index ) {
-    const currentRating = this.ratings[ index ];
-    currentRating.rating = newRating;
-};
-
-projectSchema.methods.getRatingIndex = function( owner ) {
-    const index = this.ratings.map( rating => rating.owner ).indexOf( owner );
-    return index;
-};
-
-projectSchema.methods.deleteRating = function ( ratingIndex ) {
-    this.ratings.splice( ratingIndex, 1 );
-};
-
-projectSchema.methods.updateRatingAverage = function() {
-    let average = 0;
-    if ( this.ratings.length === 0 ) {
-        this.averageRating = 0;
-        return;
-    }
-    const total = this.ratings
-        .map( ( object ) => object.rating )
-        .reduce( ( acc, current ) => acc + current, 0 );
-
-    average = total / this.ratings.length;
-    this.averageRating = average.toFixed( 2 );
-};
-
-projectSchema.methods.editProject = function( body ) {
-    const {
-        title, director, picture, releaseDate, description, categories, cast,
-    } = body;
-    this.title = title || this.title;
-    this.director = director;
-    this.releaseDate = releaseDate;
-    this.description = description || this.description;
-    this.picture = picture;
-    this.categories = categories || this.categories;
-    this.cast = cast;
-};
-
-projectSchema.methods.spamReview = function( reviewIndex ) {
-    const review = this.reviews[ reviewIndex ];
-    review.markedAsSpam = true;
-};
-
-projectSchema.methods.editReview = function( body, index ) {
-    const { title, description, rating } = body;
-    const review = this.reviews[ index ];
-    review.title = title || review.title;
-    review.description = description || review.description;
-    review.rating = rating;
+projectSchema.methods.editSprint = function( body, index ) {
+    const { title, description } = body;
+    const sprint = this.sprints[ index ];
+    sprint.title = title || sprint.title;
+    sprint.description = description || sprint.description;
 };
 
 module.exports = mongoose.model( "Project", projectSchema );

@@ -1,6 +1,3 @@
-const checkOwnership = require( "../middlewares/checkOwnership" );
-const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
-
 const projectsController = require( "../controllers/projectsController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
@@ -91,52 +88,37 @@ router.put(
     usersController.addSprint,
 );
 
-// /**
-// *    @apiGroup User
-// *    @api {put} /users/:userId/editProject/:projectId Edit a Project.
-// *    @apiParam {String} userId  User ID required.
-// *    @apiParam {String} projectId  Project ID required.
-// */
-// router.put(
-//     "/users/:userId/editProject/:projectId",
-//     checkExistingModel( "userId", "User", "user" ),
-//     validateToken,
-//     checkExistingModel( "projectId", "Project", "project" ),
-//     checkOwnership,
-//     usersController.editProject,
-// );
+/**
 
-// /**
+*    @apiGroup User
+*    @api {put} /users/:userId/:projectId/removeSprint/:sprintId Remove a sprint.
+*    @apiParam {String} userId User ID required.
+*    @apiParam {String} projectId Project ID required.
+*    @apiParam {String} sprintwId Sprint ID required.
 
-// *    @apiGroup User
-// *    @api {put} /users/:userId/:projectId/removeReview/:reviewId Remove a review.
-// *    @apiParam {String} userId User ID required.
-// *    @apiParam {String} projectId Project ID required.
-// *    @apiParam {String} reviewId Review ID required.
+*/
+router.delete(
+    "/users/:userId/:projectId/removeSprint/:sprintId",
+    checkExistingModel( "userId", "User", "user" ),
+    // validateToken,
+    checkExistingModel( "projectId", "Project", "project" ),
+    usersController.removeSprint,
+);
 
-// */
-// router.delete(
-//     "/users/:userId/:projectId/removeReview/:reviewId",
-//     checkExistingModel( "userId", "User", "user" ),
-//     validateToken,
-//     checkExistingModel( "projectId", "Project", "project" ),
-//     usersController.removeReview,
-// );
-
-// /*
-//     *    @apiGroup User
-//     *    @api {put} /users/:userId/:projectId/editReview/:reviewId Edit a review.
-//     *    @apiParam {String} userId  User ID required.
-//     *    @apiParam {String} projectId Project ID required.
-//     *    @apiParam {String} reviewId  Review ID required.
-// */
-// router.put(
-//     "/users/:userId/:projectId/editReview/:reviewId",
-//     checkExistingModel( "userId", "User", "user" ),
-//     validateToken,
-//     checkExistingModel( "projectId", "project", "Project" ),
-//     usersController.editReview,
-// );
+/*
+    *    @apiGroup User
+    *    @api {put} /users/:userId/:projectId/editSprint/:sprintId Edit a sprint.
+    *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} projectId Project ID required.
+    *    @apiParam {String} SprintId  Sprint ID required.
+*/
+router.put(
+    "/users/:userId/:projectId/editSprint/:sprintId",
+    checkExistingModel( "userId", "User", "user" ),
+    // validateToken,
+    checkExistingModel( "projectId", "Project", "project" ),
+    usersController.editSprint,
+);
 
 /**
 *    @apiGroup Project
@@ -153,12 +135,10 @@ router.get(
 /**
 *    @apiGroup Project
 *    @api {get} /projects/getAll/:param Get all projects.
-*    @apiDescription returns all projects if param is missing, otherwise
-*    filters by param value (rating, categories)
+*    @apiDescription returns all projects
 */
 router.get(
-    "/projects/getAll/:param?",
-    checkRequestParameter,
+    "/projects/getAll/",
     projectsController.getAllProjects,
 );
 

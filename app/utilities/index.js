@@ -1,21 +1,8 @@
 const co = require( "co" );
 
-
-exports.updateRating = ( movie, rating, username ) => {
-    const ratingIndex = movie.getRatingIndex( username );
-    if ( ratingIndex === -1 ) {
-        movie.addRating( rating, username );
-    } else {
-        movie.updateRating( rating, ratingIndex );
-    }
-    movie.updateRatingAverage();
-};
-
 exports.saveChangesToModel = ( res, model ) => {
-    console.log(model)
     model.save( ( err, updatedModel ) => {
         if ( err ) {
-            console.log(err)
             return res.validationError( err );
         }
         return res.success( updatedModel );
@@ -38,6 +25,6 @@ exports.saveChangesToModel = ( res, model ) => {
 // } );
 
 exports.queryModel = co.wrap( function* ( model, query ) {
-    const movies = yield model.find( query );
-    return movies;
+    const result = yield model.find( query );
+    return result;
 } );

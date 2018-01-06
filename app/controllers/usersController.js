@@ -1,5 +1,5 @@
 const mongoose = require( "mongoose" );
-const { saveChangesToModel, updateRating } = require( "../utilities/index" );
+const { saveChangesToModel } = require( "../utilities/index" );
 
 const User = mongoose.model( "User" );
 const Project = mongoose.model( "Project" );
@@ -56,46 +56,25 @@ exports.addSprint = ( req, res ) => {
     const { project } = req;
     const { username } = req.user;
     project.addSprint( req.body, username );
-    // updateRating( project, req.body.rating, username );
-    console.log(project)
     saveChangesToModel( res, project );
 };
 
-exports.editMovie = ( req, res ) => {
-    const { movie } = req;
-    movie.editMovie( req.body );
-    saveChangesToModel( res, movie );
+exports.removeSprint = ( req, res ) => {
+    const { project } = req;
+    const { sprintId } = req.params;
+    const sprintIndex = project.getSprintIndex( sprintId );
+
+    project.removeSprint( sprintIndex );
+
+    saveChangesToModel( res, project );
 };
 
-exports.removeReview = ( req, res ) => {
-    const { movie } = req;
-    const { username } = req.user;
-    const { reviewId } = req.params;
-    const reviewIndex = movie.getReviewIndex( reviewId );
+exports.editSprint = ( req, res ) => {
+    const { project } = req;
+    const { sprintId } = req.params;
+    const sprintIndex = project.getSprintIndex( sprintId );
 
-    if ( movie.reviews[ reviewIndex ].author !== username ) {
-        return res.unauthorized();
-    }
-    movie.removeReview( reviewIndex );
+    project.editSprint( req.body, sprintIndex );
 
-    const ratingIndex = movie.getRatingIndex( username );
-    movie.deleteRating( ratingIndex );
-    movie.updateRatingAverage();
-
-    saveChangesToModel( res, movie );
-};
-
-exports.editReview = ( req, res ) => {
-    const { movie } = req;
-    const { username } = req.user;
-    const { reviewId } = req.params;
-    const reviewIndex = movie.getReviewIndex( reviewId );
-
-    if ( movie.reviews[ reviewIndex ].author !== username ) {
-        return res.unauthorized();
-    }
-    movie.editReview( req.body, reviewIndex );
-    updateRating( movie, req.body.rating, username );
-
-    saveChangesToModel( res, movie );
+    saveChangesToModel( res, project );
 };
