@@ -2,7 +2,7 @@ const mongoose = require( "mongoose" );
 const { saveChangesToModel, updateRating } = require( "../utilities/index" );
 
 const User = mongoose.model( "User" );
-const Movie = mongoose.model( "Movie" );
+const Project = mongoose.model( "Project" );
 
 /* eslint consistent-return: "off" */
 exports.register = ( req, res ) => {
@@ -39,34 +39,26 @@ exports.delete = ( req, res ) => {
     saveChangesToModel( res, user );
 };
 
-exports.addMovie = ( req, res ) => {
+exports.addProject = ( req, res ) => {
     const { user } = req;
-    let { movie } = req;
+    let { project } = req;
 
-    if ( movie ) {
-        return res.preconditionFailed( "existing_movie" );
+    if ( project ) {
+        return res.preconditionFailed( "existing_project" );
     }
-    movie = new Movie( req.body );
-    movie.addOwner( user.id );
-    movie.addId( );
-    saveChangesToModel( res, movie );
+    project = new Project( req.body );
+    project.addOwner( user.id );
+    project.addId( );
+    saveChangesToModel( res, project );
 };
 
-exports.rateMovie = ( req, res ) => {
-    const { movie } = req;
-    const { id } = req.user;
-    const { rating } = req.body;
-    updateRating( movie, rating, id );
-    movie.updateRatingAverage();
-    saveChangesToModel( res, movie );
-};
-
-exports.reviewMovie = ( req, res ) => {
-    const { movie } = req;
+exports.addSprint = ( req, res ) => {
+    const { project } = req;
     const { username } = req.user;
-    movie.addReview( req.body, username );
-    updateRating( movie, req.body.rating, username );
-    saveChangesToModel( res, movie );
+    project.addSprint( req.body, username );
+    // updateRating( project, req.body.rating, username );
+    console.log(project)
+    saveChangesToModel( res, project );
 };
 
 exports.editMovie = ( req, res ) => {
@@ -90,15 +82,6 @@ exports.removeReview = ( req, res ) => {
     movie.deleteRating( ratingIndex );
     movie.updateRatingAverage();
 
-    saveChangesToModel( res, movie );
-};
-
-exports.markReviewAsSpam = ( req, res ) => {
-    const { movie } = req;
-    const { reviewId } = req.params;
-    const reviewIndex = movie.getReviewIndex( reviewId );
-
-    movie.spamReview( reviewIndex );
     saveChangesToModel( res, movie );
 };
 

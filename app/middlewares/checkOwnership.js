@@ -1,11 +1,11 @@
 const mongoose = require( "mongoose" );
 
 module.exports = ( req, res, next ) => {
-    const { movieId } = req.params;
+    const { projectId } = req.params;
     const { userId } = req.params;
-    const Collection = mongoose.model( "Movie" );
+    const Collection = mongoose.model( "Project" );
     return Collection.findOne(
-        { id: movieId },
+        { id: projectId },
         ( err, found ) => {
             if ( err ) {
                 return res.serverError( );

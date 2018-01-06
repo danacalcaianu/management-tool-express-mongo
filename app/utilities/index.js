@@ -1,11 +1,5 @@
 const co = require( "co" );
 
-exports.extractObject = ( obj, keys ) => {
-    const returnObj = { };
-    keys.forEach( key => { returnObj[ key ] = obj[ key ]; } );
-
-    return returnObj;
-};
 
 exports.updateRating = ( movie, rating, username ) => {
     const ratingIndex = movie.getRatingIndex( username );
@@ -18,8 +12,10 @@ exports.updateRating = ( movie, rating, username ) => {
 };
 
 exports.saveChangesToModel = ( res, model ) => {
+    console.log(model)
     model.save( ( err, updatedModel ) => {
         if ( err ) {
+            console.log(err)
             return res.validationError( err );
         }
         return res.success( updatedModel );
@@ -40,18 +36,6 @@ exports.saveChangesToModel = ( res, model ) => {
 //     query ).then( ( results ) => {
 //     return res.success( results );
 // } );
-
-exports.queryBatch = async ( model, number, limitSize ) => {
-    try {
-        const movies = await model
-            .find()
-            .skip( limitSize * number )
-            .limit( limitSize );
-        return movies;
-    } catch ( err ) {
-        return err;
-    }
-};
 
 exports.queryModel = co.wrap( function* ( model, query ) {
     const movies = yield model.find( query );

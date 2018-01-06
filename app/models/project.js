@@ -15,26 +15,25 @@ const projectSchema = new Schema( {
     description: { type: String, required: true },
     addedBy: String, // userId
     sprints: { type: [ sprintSchema ], default: [ ] },
-} );
+}, { usePushEach: true } );
 
 /* eslint func-names : off */
-projectSchema.methods.createMovie = function( data ) {
+projectSchema.methods.createProject = function( data ) {
     this.title = data.title;
     this.description = data.description;
     this.categories = data.categories;
     return this;
 };
 
-projectSchema.methods.addReview = function( body, author ) {
-    const { title, description, rating } = body;
-    const review = {
+projectSchema.methods.addSprint = function( body, author ) {
+    const { title, description } = body;
+    const sprint = {
         title,
         description,
-        rating,
         author,
         id: uid( 10 ),
     };
-    return this.reviews.push( review );
+    return this.sprints.push( sprint );
 };
 
 projectSchema.methods.getReviewIndex = function( reviewId ) {
@@ -95,7 +94,7 @@ projectSchema.methods.updateRatingAverage = function() {
     this.averageRating = average.toFixed( 2 );
 };
 
-projectSchema.methods.editMovie = function( body ) {
+projectSchema.methods.editProject = function( body ) {
     const {
         title, director, picture, releaseDate, description, categories, cast,
     } = body;
@@ -121,4 +120,4 @@ projectSchema.methods.editReview = function( body, index ) {
     review.rating = rating;
 };
 
-module.exports = mongoose.model( "Movie", projectSchema );
+module.exports = mongoose.model( "Project", projectSchema );

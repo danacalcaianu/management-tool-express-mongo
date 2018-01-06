@@ -1,8 +1,7 @@
-const moviesController = require( "../controllers/moviesController" );
 const checkOwnership = require( "../middlewares/checkOwnership" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
-const checkUserAccess = require( "../middlewares/checkUserAccess" );
 
+const projectsController = require( "../controllers/projectsController" );
 const validateToken = require( "../middlewares/validateToken" );
 const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const usersController = require( "../controllers/usersController" );
@@ -57,14 +56,13 @@ router.post(
     "/users/login",
     checkExistingModel( "username", "User", "user" ),
     checkLoginPassword,
-    checkUserAccess,
     assignToken,
     usersController.login,
 );
 
 /**
 *    @apiGroup User
-*    @api {delete} /users/:userId/deleteProfile Delete an user.
+*    @api {delete} /users/:userId/addProject Add a project.
 *    @apiParam {String} userId  User ID required.
 *    @apiHeaderExample Example header
 *       {
@@ -72,168 +70,97 @@ router.post(
 *       }
 */
 router.put(
-    "/users/:userId/deleteProfile",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    usersController.delete,
-);
-
-/**
-*    @apiGroup User
-*    @api {delete} /users/:userId/addMovie Add a movie.
-*    @apiParam {String} userId  User ID required.
-*    @apiHeaderExample Example header
-*       {
-*           id:123456789
-*       }
-*/
-router.put(
-    "/users/:userId/addMovie",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    checkExistingModel( "title", "Movie", "movie" ),
-    usersController.addMovie,
-);
-
-/**
-*    @apiGroup User
-*    @api {put} /users/:userId/rateMovie/:movieId Rate a movie.
-*    @apiParam {String} userId  User ID required.
-*    @apiParam {String} movieId  Movie ID required.
-*    @apiBodyExample Example body
-*       {
-*           rating: "3"
-*       }
-*/
-router.put(
-    "/users/:userId/rateMovie/:movieId",
+    "/users/:userId/addProject",
     checkExistingModel( "userId", "User", "user" ),
     // validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.rateMovie,
+    checkExistingModel( "title", "Project", "project" ),
+    usersController.addProject,
 );
 
 /**
 *    @apiGroup User
-*    @api {put} /users/:userId/reviewMovie/:movieId Review a movie.
+*    @api {put} /users/:userId/addSprint/:projectId Add a sprint.
 *    @apiParam {String} userId  User ID required.
-*    @apiParam {String} movieId  Movie ID required.
+*    @apiParam {String} projectId  Project ID required.
 */
 router.put(
-    "/users/:userId/reviewMovie/:movieId",
+    "/users/:userId/addSprint/:projectId",
     checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.reviewMovie,
+    // validateToken,
+    checkExistingModel( "projectId", "Project", "project" ),
+    usersController.addSprint,
 );
 
-/**
-*    @apiGroup User
-*    @api {put} /users/:userId/editMovie/:movieId Edit a movie.
-*    @apiParam {String} userId  User ID required.
-*    @apiParam {String} movieId  Movie ID required.
-*/
-router.put(
-    "/users/:userId/editMovie/:movieId",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    checkOwnership,
-    usersController.editMovie,
-);
+// /**
+// *    @apiGroup User
+// *    @api {put} /users/:userId/editProject/:projectId Edit a Project.
+// *    @apiParam {String} userId  User ID required.
+// *    @apiParam {String} projectId  Project ID required.
+// */
+// router.put(
+//     "/users/:userId/editProject/:projectId",
+//     checkExistingModel( "userId", "User", "user" ),
+//     validateToken,
+//     checkExistingModel( "projectId", "Project", "project" ),
+//     checkOwnership,
+//     usersController.editProject,
+// );
 
-/**
+// /**
 
-*    @apiGroup User
-*    @api {put} /users/:userId/:movieId/removeReview/:reviewId Remove a review.
-*    @apiParam {String} userId User ID required.
-*    @apiParam {String} movieId Movie ID required.
-*    @apiParam {String} reviewId Review ID required.
+// *    @apiGroup User
+// *    @api {put} /users/:userId/:projectId/removeReview/:reviewId Remove a review.
+// *    @apiParam {String} userId User ID required.
+// *    @apiParam {String} projectId Project ID required.
+// *    @apiParam {String} reviewId Review ID required.
 
-*/
-router.delete(
-    "/users/:userId/:movieId/removeReview/:reviewId",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.removeReview,
-);
-/*
-    *    @apiGroup User
-    *    @api {put} /users/:userId/:movieId/spamReview/:reviewId Mark a review as spam.
-    *    @apiParam {String} userId  User ID required.
-    *    @apiParam {String} movieId Movie ID required.
-    *    @apiParam {String} reviewId  Review ID required.
-*/
-router.put(
-    "/users/:userId/:movieId/spamReview/:reviewId",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.markReviewAsSpam,
-);
+// */
+// router.delete(
+//     "/users/:userId/:projectId/removeReview/:reviewId",
+//     checkExistingModel( "userId", "User", "user" ),
+//     validateToken,
+//     checkExistingModel( "projectId", "Project", "project" ),
+//     usersController.removeReview,
+// );
 
-/*
-    *    @apiGroup User
-    *    @api {put} /users/:userId/:movieId/editReview/:reviewId Edit a review.
-    *    @apiParam {String} userId  User ID required.
-    *    @apiParam {String} movieId Movie ID required.
-    *    @apiParam {String} reviewId  Review ID required.
-*/
-router.put(
-    "/users/:userId/:movieId/editReview/:reviewId",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    usersController.editReview,
-);
+// /*
+//     *    @apiGroup User
+//     *    @api {put} /users/:userId/:projectId/editReview/:reviewId Edit a review.
+//     *    @apiParam {String} userId  User ID required.
+//     *    @apiParam {String} projectId Project ID required.
+//     *    @apiParam {String} reviewId  Review ID required.
+// */
+// router.put(
+//     "/users/:userId/:projectId/editReview/:reviewId",
+//     checkExistingModel( "userId", "User", "user" ),
+//     validateToken,
+//     checkExistingModel( "projectId", "project", "Project" ),
+//     usersController.editReview,
+// );
 
-/**
-*    @apiGroup Movie
-*    @api {get} /movies/:movieId/getMovie Get a movie.
-*    @apiParam {String} id  Movie ID required.
-*    @apiSampleRequest http://localhost:3030/movies/1223frhs/getMovie
-*/
-router.get(
-    "/movies/:movieId/getMovie",
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    moviesController.getMovie,
-);
+// /**
+// *    @apiGroup Project
+// *    @api {get} /projects/:projectId/getProject Get a project.
+// *    @apiParam {String} id  Project ID required.
+// *    @apiSampleRequest http://localhost:3030/projects/1223frhs/getProject
+// */
+// router.get(
+//     "/projects/:projectId/getProject",
+//     checkExistingModel( "projectId", "Project", "project" ),
+//     projectsController.getProject,
+// );
 
-/**
-*    @apiGroup Movie
-*    @api {get} /movies/getAll/:param Get all movies.
-*    @apiDescription returns all movies if param is missing, otherwise
-*    filters by param value (rating, categories)
-*/
-router.get(
-    "/movies/getAll/:param?",
-    checkRequestParameter,
-    moviesController.getAllMovies,
-);
-
-/**
-*    @apiGroup Movie
-*    @api {get} /movies/getBatch/:page Get a certain number of movies.
-*    @apiDescription returns a limited number of movies based on the page parameter
-*/
-router.get(
-    "/movies/getBatch/:page",
-    moviesController.getBatchOfMovies,
-);
-
-/**
-*    @apiGroup Movie
-*    @api {get} /movies/:userId/getUserMovies Get all movies for user.
-*    @apiDescription returns all movies for a given user
-*    @apiParam {String} id  User ID required.
-*/
-router.get(
-    "/movies/:userId/getUserMovies",
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    moviesController.getMoviesForUser,
-);
+// /**
+// *    @apiGroup Project
+// *    @api {get} /projects/getAll/:param Get all projects.
+// *    @apiDescription returns all projects if param is missing, otherwise
+// *    filters by param value (rating, categories)
+// */
+// router.get(
+//     "/projects/getAll/:param?",
+//     checkRequestParameter,
+//     projectsController.getAllProjects,
+// );
 
 module.exports = ( app ) => {
     app.use( "/", router );
