@@ -89,6 +89,20 @@ router.put(
 );
 
 /**
+*    @apiGroup User
+*    @api {put} /users/:userId/addIssue/:projectId Add an issue.
+*    @apiParam {String} userId  User ID required.
+*    @apiParam {String} projectId  Project ID required.
+*/
+router.put(
+    "/users/:userId/addIssue/:projectId",
+    checkExistingModel( "userId", "User", "user" ),
+    // validateToken,
+    checkExistingModel( "projectId", "Project", "project" ),
+    usersController.addIssue,
+);
+
+/**
 
 *    @apiGroup User
 *    @api {put} /users/:userId/:projectId/removeSprint/:sprintId Remove a sprint.
@@ -98,8 +112,8 @@ router.put(
 
 */
 router.delete(
-    "/users/:userId/:projectId/removeSprint/:sprintId",
-    checkExistingModel( "userId", "User", "user" ),
+    "/users/:projectId/removeSprint/:sprintId",
+    // checkExistingModel( "userId", "User", "user" ),
     // validateToken,
     checkExistingModel( "projectId", "Project", "project" ),
     usersController.removeSprint,

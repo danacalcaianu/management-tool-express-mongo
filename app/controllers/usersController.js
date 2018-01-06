@@ -59,6 +59,14 @@ exports.addSprint = ( req, res ) => {
     saveChangesToModel( res, project );
 };
 
+exports.addIssue = ( req, res ) => {
+    const { project } = req;
+    const { username } = req.user;
+    console.log(project)
+    project.addIssue( req.body, username );
+    saveChangesToModel( res, project );
+};
+
 exports.removeSprint = ( req, res ) => {
     const { project } = req;
     const { sprintId } = req.params;
