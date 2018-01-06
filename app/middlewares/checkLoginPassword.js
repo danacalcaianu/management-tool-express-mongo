@@ -1,7 +1,7 @@
 const bcrypt = require( "bcrypt" );
 
 module.exports = ( req, res, next ) => {
-    const person = req.user || req.admin;
+    const person = req.user;
     if ( !person ) {
         return res.unauthorized();
     }

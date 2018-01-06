@@ -3,50 +3,29 @@ const uid = require( "uid" );
 
 const { Schema } = mongoose;
 
-const reviewSchema = new Schema( {
+const sprintSchema = new Schema( {
     id: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
-    author: { type: String, required: true },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 5,
-        required: true,
-    },
-    markedAsSpam: { type: Boolean, default: false },
 } );
 
-const movieSchema = new Schema( {
+const projectSchema = new Schema( {
     id: { type: String, required: true },
     title: { type: String, required: true },
-    director: String,
-    cast: [ String ],
-    categories: {
-        type: String,
-        enum: [ "Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi" ],
-        required: true,
-    },
-    releaseDate: Date,
     description: { type: String, required: true },
-    ratings: [ { rating: { type: Number, min: 0, max: 5 }, owner: String } ],
-    averageRating: Number,
-    picture: String,
-    addedBy: String, // userId / adminId
-    deletedBy: String, // adminId
-    deleted: { type: Boolean, default: false },
-    reviews: { type: [ reviewSchema ], default: [ ] },
+    addedBy: String, // userId
+    sprints: { type: [ sprintSchema ], default: [ ] },
 } );
 
 /* eslint func-names : off */
-movieSchema.methods.createMovie = function( data ) {
+projectSchema.methods.createMovie = function( data ) {
     this.title = data.title;
     this.description = data.description;
     this.categories = data.categories;
     return this;
 };
 
-movieSchema.methods.addReview = function( body, author ) {
+projectSchema.methods.addReview = function( body, author ) {
     const { title, description, rating } = body;
     const review = {
         title,
@@ -58,29 +37,29 @@ movieSchema.methods.addReview = function( body, author ) {
     return this.reviews.push( review );
 };
 
-movieSchema.methods.getReviewIndex = function( reviewId ) {
+projectSchema.methods.getReviewIndex = function( reviewId ) {
     const index = this.reviews.map( review => review.id ).indexOf( reviewId );
     return index;
 };
 
-movieSchema.methods.getReviewForIndex = function( reviewIndex ) {
+projectSchema.methods.getReviewForIndex = function( reviewIndex ) {
     const review = this.reviews[ reviewIndex ];
     return review;
 };
 
-movieSchema.methods.removeReview = function( reviewIndex ) {
+projectSchema.methods.removeReview = function( reviewIndex ) {
     this.reviews.splice( reviewIndex, 1 );
 };
 
-movieSchema.methods.addOwner = function( userId ) {
+projectSchema.methods.addOwner = function( userId ) {
     this.addedBy = userId;
 };
 
-movieSchema.methods.addId = function( ) {
+projectSchema.methods.addId = function( ) {
     this.id = uid( 10 );
 };
 
-movieSchema.methods.addRating = function( rating, author ) {
+projectSchema.methods.addRating = function( rating, author ) {
     const newRating = {
         rating,
         owner: author,
@@ -88,21 +67,21 @@ movieSchema.methods.addRating = function( rating, author ) {
     this.ratings.push( newRating );
 };
 
-movieSchema.methods.updateRating = function ( newRating, index ) {
+projectSchema.methods.updateRating = function ( newRating, index ) {
     const currentRating = this.ratings[ index ];
     currentRating.rating = newRating;
 };
 
-movieSchema.methods.getRatingIndex = function( owner ) {
+projectSchema.methods.getRatingIndex = function( owner ) {
     const index = this.ratings.map( rating => rating.owner ).indexOf( owner );
     return index;
 };
 
-movieSchema.methods.deleteRating = function ( ratingIndex ) {
+projectSchema.methods.deleteRating = function ( ratingIndex ) {
     this.ratings.splice( ratingIndex, 1 );
 };
 
-movieSchema.methods.updateRatingAverage = function() {
+projectSchema.methods.updateRatingAverage = function() {
     let average = 0;
     if ( this.ratings.length === 0 ) {
         this.averageRating = 0;
@@ -116,7 +95,7 @@ movieSchema.methods.updateRatingAverage = function() {
     this.averageRating = average.toFixed( 2 );
 };
 
-movieSchema.methods.editMovie = function( body ) {
+projectSchema.methods.editMovie = function( body ) {
     const {
         title, director, picture, releaseDate, description, categories, cast,
     } = body;
@@ -129,12 +108,12 @@ movieSchema.methods.editMovie = function( body ) {
     this.cast = cast;
 };
 
-movieSchema.methods.spamReview = function( reviewIndex ) {
+projectSchema.methods.spamReview = function( reviewIndex ) {
     const review = this.reviews[ reviewIndex ];
     review.markedAsSpam = true;
 };
 
-movieSchema.methods.editReview = function( body, index ) {
+projectSchema.methods.editReview = function( body, index ) {
     const { title, description, rating } = body;
     const review = this.reviews[ index ];
     review.title = title || review.title;
@@ -142,4 +121,4 @@ movieSchema.methods.editReview = function( body, index ) {
     review.rating = rating;
 };
 
-module.exports = mongoose.model( "Movie", movieSchema );
+module.exports = mongoose.model( "Movie", projectSchema );

@@ -6,7 +6,7 @@ const SECRET = "superSuperSecret";
 /* eslint complexity: off */
 module.exports = ( req, res, next ) => {
     const token = req.body.token || req.query.token || req.headers[ "x-access-token" ];
-    const person = req.user || req.admin;
+    const person = req.user;
 
     if ( !token || !person ) {
         return res.unauthorized( );

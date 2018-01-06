@@ -56,7 +56,6 @@ exports.rateMovie = ( req, res ) => {
     const { movie } = req;
     const { id } = req.user;
     const { rating } = req.body;
-
     updateRating( movie, rating, id );
     movie.updateRatingAverage();
     saveChangesToModel( res, movie );

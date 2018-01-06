@@ -1,14 +1,13 @@
-const usersController = require( "../controllers/usersController" );
 const moviesController = require( "../controllers/moviesController" );
-const adminsController = require( "../controllers/adminsController" );
 const checkOwnership = require( "../middlewares/checkOwnership" );
-const validateToken = require( "../middlewares/validateToken" );
-const checkExistingModel = require( "../middlewares/checkExistingModel" );
 const checkRequestParameter = require( "../middlewares/checkRequestParameter" );
 const checkUserAccess = require( "../middlewares/checkUserAccess" );
+
+const validateToken = require( "../middlewares/validateToken" );
+const checkExistingModel = require( "../middlewares/checkExistingModel" );
+const usersController = require( "../controllers/usersController" );
 const checkEmailExists = require( "../middlewares/checkEmailExists" );
 const checkEmailFormat = require( "../middlewares/checkEmailFormat" );
-const checkPasswordFormat = require( "../middlewares/checkPasswordFormat" );
 const checkLoginPassword = require( "../middlewares/checkLoginPassword" );
 const assignToken = require( "../middlewares/assignToken" );
 const hashPassword = require( "../middlewares/hashPassword" );
@@ -35,10 +34,8 @@ const router = express.Router( );
 router.post(
     "/users/registration",
     checkEmailFormat,
-    checkPasswordFormat,
     checkExistingModel( "username", "User", "user" ),
     checkEmailExists( "User" ),
-    checkEmailExists( "Admin" ),
     hashPassword,
     usersController.register,
 );
@@ -63,23 +60,6 @@ router.post(
     checkUserAccess,
     assignToken,
     usersController.login,
-);
-
-/**
-*    @apiGroup User
-*    @api {put} /users/:userId/edit Edit the profile and filtering options.
-*    @apiDescription Useful to change profile information
-*    @apiParam {String} userId  User ID required.
-*    @apiParam {String} password  Mandatory password.
-*/
-router.put(
-    "/users/:userId/edit",
-    checkEmailFormat,
-    checkEmailExists( "User" ),
-    checkEmailExists( "Admin" ),
-    checkExistingModel( "userId", "User", "user" ),
-    validateToken,
-    usersController.edit,
 );
 
 /**
@@ -253,143 +233,6 @@ router.get(
     checkExistingModel( "userId", "User", "user" ),
     validateToken,
     moviesController.getMoviesForUser,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {post} /admins/registration Adding an admin to the db.
-*    @apiParam {String} id  Admin ID required.
-*    @apiParam {String} username  Mandatory  username.
-*    @apiParam {String} firstName  Mandatory first name.
-*    @apiParam {String} lastName  Mandatory last name.
-*    @apiParam {String} email  Mandatory email.
-*    @apiExample {response} Example response:
-*       {
-*         "admin": {
-*            "id": 123456789,
-*            "username": "user123"
-*           }
-*      }
-*/
-router.post(
-    "/admins/registration",
-    checkEmailExists( "User" ),
-    checkEmailExists( "Admin" ),
-    checkEmailFormat,
-    checkPasswordFormat,
-    checkExistingModel( "username", "Admin", "admin" ),
-    hashPassword,
-    adminsController.register,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {post} /admins/login Admin login route.
-*    @apiParam {String} id  Admin ID required.
-*    @apiParam {String} username  Admin username required.
-*    @apiParam {String} password  Admin password required.
-*    @apiExample {response} Example response:
-*       {
-*         "user": {
-*            "token": dahljkhajfhajku32974eq9kjh
-*           }
-*      }
-*/
-router.post(
-    "/admins/login",
-    checkExistingModel( "username", "Admin", "admin" ),
-    checkLoginPassword,
-    assignToken,
-    adminsController.login,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {put} /admins/:adminId/edit Edit the profile and filtering options.
-*    @apiDescription Useful to change profile information
-*    @apiParam {String} id  Admin ID required.
-*    @apiParam {String} password  Mandatory password.
-*/
-router.put(
-    "/admins/:adminId/edit",
-    checkEmailFormat,
-    checkEmailExists( "User" ),
-    checkEmailExists( "Admin" ),
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    adminsController.edit,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {delete} /admins/:adminId/deleteProfile Delete an admin.
-*    @apiParam {String} adminId Admin ID required.
-*    @apiHeaderExample Example header
-*       {
-*           id:123456789
-*       }
-*/
-router.put(
-    "/admins/:adminId/deleteProfile",
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    adminsController.deleteProfile,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {delete} /admins/:adminId/deleteMovie/:movieId Delete a movie from an admin profile.
-*    @apiParam {String} adminId Admin ID required.
-*    @apiParam {String} movieId Movie ID required.
-*    @apiHeaderExample Example header
-*       {
-*           id:123456789
-*       }
-*/
-router.delete(
-    "/admins/:adminId/deleteMovie/:movieId",
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    adminsController.deleteMovie,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {delete} /admins/:adminId/block/:userId Block a user from an admin profile.
-*    @apiParam {String} adminId Admin ID required.
-*    @apiParam {String} userId User ID required.
-*    @apiHeaderExample Example header
-*       {
-*           id:123456789
-*       }
-*/
-router.put(
-    "/admins/:adminId/block/:userId",
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    checkExistingModel( "userId", "User", "user" ),
-    adminsController.blockUser,
-);
-
-/**
-*    @apiGroup Admin
-*    @api {delete} /admins/:adminId/:movieId/deleteReview/:reviewId Remove a review an admin profile.
-*    @apiParam {String} adminId Admin ID required.
-*    @apiParam {String} movieId Movie ID required.
-*    @apiParam {String} reviewId Review ID required.
-
-*    @apiHeaderExample Example header
-*       {
-*           id:123456789
-*       }
-*/
-router.delete(
-    "/admins/:adminId/:movieId/deleteReview/:reviewId",
-    checkExistingModel( "adminId", "Admin", "admin" ),
-    validateToken,
-    checkExistingModel( "movieId", "Movie", "movie" ),
-    adminsController.removeReview,
 );
 
 module.exports = ( app ) => {

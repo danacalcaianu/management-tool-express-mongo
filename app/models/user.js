@@ -13,15 +13,7 @@ const userSchema = new Schema( {
     email: { type: String, required: true },
     age: { type: Number },
     gender: { type: String, enum: [ "male", "female" ] },
-    categories: [ {
-        type: String,
-        enum: [ "Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Romance" ],
-    } ],
     avatar: { type: String },
-    deleted: { type: Boolean, default: false },
-    blocked: { type: Boolean, default: false },
-    blockedBy: { type: String },
-    blockedReason: { type: String },
 }, {
     timestamps: true,
 } );
@@ -39,20 +31,6 @@ userSchema.methods.setPass = function( password ) {
 
 userSchema.methods.setFullName = function( ) {
     return `${ this.firstName } ${ this.lastName }`;
-};
-
-userSchema.methods.editUser = function( body ) {
-    const {
-        firstName, lastName, gender, age, categories, avatar, email,
-    } = body;
-
-    this.firstName = firstName || this.firstName;
-    this.lastName = lastName || this.lastName;
-    this.gender = gender;
-    this.age = age;
-    this.categories = categories;
-    this.avatar = avatar;
-    this.email = email || this.email;
 };
 
 module.exports = mongoose.model( "User", userSchema );

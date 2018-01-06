@@ -13,7 +13,6 @@ const ENV = process.env.NODE_ENV || config.env;
 app.set( "env", ENV );
 
 require( "./models/user" );
-require( "./models/admin" );
 require( "./models/movie" );
 
 app.use( ( req, res, next ) => {
