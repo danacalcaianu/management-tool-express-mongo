@@ -25,3 +25,10 @@ exports.getAllProjects = ( req, res ) => {
         } )
         .catch( ( err ) => res.send( err ) );
 };
+
+exports.getIssuesForSprint = ( req, res ) => {
+    const { sprintId } = req.params;
+    const { project } = req;
+    const result = project.issues.filter( issue => issue.sprint === sprintId );
+    res.success( result );
+};

@@ -821,3 +821,33 @@
 {"level":"warn","message":"Warning message","timestamp":"01:37:17"}
 {"level":"info","message":"Info message","timestamp":"01:38:10"}
 {"level":"warn","message":"Warning message","timestamp":"01:38:10"}
+{"level":"info","message":"Info message","timestamp":"01:38:55"}
+{"level":"warn","message":"Warning message","timestamp":"01:38:55"}
+{"level":"error","message":"TypeError: Cannot read property 'addIssue' of null\n    at exports.addIssue (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:66:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"01:42:56"}
+{"level":"error","message":"TypeError: Cannot read property 'addIssue' of null\n    at exports.addIssue (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:66:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"01:43:14"}
+{"level":"info","message":"Info message","timestamp":"02:26:51"}
+{"level":"warn","message":"Warning message","timestamp":"02:26:51"}
+{"level":"info","message":"Info message","timestamp":"02:26:56"}
+{"level":"warn","message":"Warning message","timestamp":"02:26:56"}
+{"level":"info","message":"Info message","timestamp":"02:27:00"}
+{"level":"warn","message":"Warning message","timestamp":"02:27:00"}
+{"level":"info","message":"Info message","timestamp":"02:27:06"}
+{"level":"warn","message":"Warning message","timestamp":"02:27:06"}
+{"level":"info","message":"Info message","timestamp":"02:31:48"}
+{"level":"warn","message":"Warning message","timestamp":"02:31:48"}
+{"level":"info","message":"Info message","timestamp":"02:32:25"}
+{"level":"warn","message":"Warning message","timestamp":"02:32:25"}
+{"level":"info","message":"Info message","timestamp":"02:34:32"}
+{"level":"warn","message":"Warning message","timestamp":"02:34:32"}
+{"level":"info","message":"Info message","timestamp":"02:34:53"}
+{"level":"warn","message":"Warning message","timestamp":"02:34:53"}
+{"level":"info","message":"Info message","timestamp":"02:34:55"}
+{"level":"warn","message":"Warning message","timestamp":"02:34:55"}
+{"level":"info","message":"Info message","timestamp":"02:35:29"}
+{"level":"warn","message":"Warning message","timestamp":"02:35:29"}
+{"level":"info","message":"Info message","timestamp":"02:35:35"}
+{"level":"warn","message":"Warning message","timestamp":"02:35:35"}
+{"level":"info","message":"Info message","timestamp":"02:35:36"}
+{"level":"warn","message":"Warning message","timestamp":"02:35:36"}
+{"level":"info","message":"Info message","timestamp":"02:36:17"}
+{"level":"warn","message":"Warning message","timestamp":"02:36:17"}

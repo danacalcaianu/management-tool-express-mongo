@@ -156,6 +156,17 @@ router.get(
     projectsController.getAllProjects,
 );
 
+/**
+*    @apiGroup Project
+*    @api {get} /projects/:projectId/getIssuesForSprint/:sprintId Get all issues for sprint.
+*    @apiDescription returns all issues for a given sprint
+*/
+router.get(
+    "/projects/:projectId/getIssuesForSprint/:sprintId",
+    checkExistingModel( "projectId", "Project", "project" ),
+    projectsController.getIssuesForSprint,
+);
+
 module.exports = ( app ) => {
     app.use( "/", router );
 };
