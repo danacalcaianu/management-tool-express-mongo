@@ -126,12 +126,27 @@ router.delete(
     *    @apiParam {String} projectId Project ID required.
     *    @apiParam {String} SprintId  Sprint ID required.
 */
+// router.put(
+//     "/users/:userId/:projectId/editSprint/:sprintId",
+//     checkExistingModel( "userId", "User", "user" ),
+//     // validateToken,
+//     checkExistingModel( "projectId", "Project", "project" ),
+//     usersController.editSprint,
+// );
+
+/*
+    *    @apiGroup User
+    *    @api {put} /users/:userId/:projectId/editIssue/:issueId Edit a issue.
+    *    @apiParam {String} userId  User ID required.
+    *    @apiParam {String} projectId Project ID required.
+    *    @apiParam {String} IssueId  Issue ID required.
+*/
 router.put(
-    "/users/:userId/:projectId/editSprint/:sprintId",
+    "/users/:userId/:projectId/editIssue/:issueId",
     checkExistingModel( "userId", "User", "user" ),
     // validateToken,
     checkExistingModel( "projectId", "Project", "project" ),
-    usersController.editSprint,
+    usersController.editIssue,
 );
 
 /**

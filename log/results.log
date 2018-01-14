@@ -851,3 +851,42 @@
 {"level":"warn","message":"Warning message","timestamp":"02:35:36"}
 {"level":"info","message":"Info message","timestamp":"02:36:17"}
 {"level":"warn","message":"Warning message","timestamp":"02:36:17"}
+{"level":"info","message":"Info message","timestamp":"02:37:10"}
+{"level":"warn","message":"Warning message","timestamp":"02:37:10"}
+{"level":"info","message":"Info message","timestamp":"13:52:22"}
+{"level":"warn","message":"Warning message","timestamp":"13:52:22"}
+{"level":"error","message":"TypeError: Cannot read property 'addIssue' of null\n    at exports.addIssue (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:66:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"14:05:15"}
+{"level":"error","message":"TypeError: Cannot read property 'addIssue' of null\n    at exports.addIssue (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:66:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"14:05:24"}
+{"level":"error","message":"TypeError: Cannot read property 'addIssue' of null\n    at exports.addIssue (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:66:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"14:05:28"}
+{"level":"info","message":"Info message","timestamp":"23:48:36"}
+{"level":"warn","message":"Warning message","timestamp":"23:48:36"}
+{"level":"info","message":"Info message","timestamp":"21:23:19"}
+{"level":"warn","message":"Warning message","timestamp":"21:23:19"}
+{"level":"info","message":"Info message","timestamp":"21:23:32"}
+{"level":"warn","message":"Warning message","timestamp":"21:23:32"}
+{"level":"info","message":"Info message","timestamp":"21:21:27"}
+{"level":"warn","message":"Warning message","timestamp":"21:21:27"}
+{"level":"error","message":"TypeError: Cannot read property 'addIssue' of null\n    at exports.addIssue (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:66:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"23:30:44"}
+{"level":"info","message":"Info message","timestamp":"14:24:22"}
+{"level":"warn","message":"Warning message","timestamp":"14:24:22"}
+{"level":"info","message":"Info message","timestamp":"17:50:06"}
+{"level":"warn","message":"Warning message","timestamp":"17:50:06"}
+{"level":"info","message":"Info message","timestamp":"18:20:47"}
+{"level":"warn","message":"Warning message","timestamp":"18:20:47"}
+{"level":"error","message":"TypeError: Cannot read property 'addSprint' of null\n    at exports.addSprint (/home/dana/Desktop/movie-catalog-backend/app/controllers/usersController.js:58:13)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/movie-catalog-backend/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/movie-catalog-backend/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/movie-catalog-backend/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)","timestamp":"20:29:16"}
+{"level":"info","message":"Info message","timestamp":"22:42:55"}
+{"level":"warn","message":"Warning message","timestamp":"22:42:55"}
+{"level":"info","message":"Info message","timestamp":"22:43:18"}
+{"level":"warn","message":"Warning message","timestamp":"22:43:18"}
+{"level":"info","message":"Info message","timestamp":"22:43:37"}
+{"level":"warn","message":"Warning message","timestamp":"22:43:37"}
+{"level":"info","message":"Info message","timestamp":"22:43:39"}
+{"level":"warn","message":"Warning message","timestamp":"22:43:39"}
+{"level":"info","message":"Info message","timestamp":"22:56:05"}
+{"level":"warn","message":"Warning message","timestamp":"22:56:05"}
+{"level":"info","message":"Info message","timestamp":"22:56:37"}
+{"level":"warn","message":"Warning message","timestamp":"22:56:37"}
+{"level":"info","message":"Info message","timestamp":"22:56:57"}
+{"level":"warn","message":"Warning message","timestamp":"22:56:57"}
+{"level":"info","message":"Info message","timestamp":"23:00:10"}
+{"level":"warn","message":"Warning message","timestamp":"23:00:10"}

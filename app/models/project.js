@@ -77,12 +77,16 @@ projectSchema.methods.addIssue = function( body, createdBy ) {
         comments,
         id: uid( 10 ),
     };
-    console.log(sprint)
     return this.issues.push( newSprint );
 };
 
 projectSchema.methods.getSprintIndex = function( sprintId ) {
     const index = this.sprints.map( sprint => sprint.id ).indexOf( sprintId );
+    return index;
+};
+
+projectSchema.methods.getIssueIndex = function( issueId ) {
+    const index = this.issues.map( issue => issue.id ).indexOf( issueId );
     return index;
 };
 
@@ -103,6 +107,23 @@ projectSchema.methods.editSprint = function( body, index ) {
     const sprint = this.sprints[ index ];
     sprint.title = title || sprint.title;
     sprint.description = description || sprint.description;
+};
+/* eslint complexity : off */
+projectSchema.methods.editIssue = function( body, index ) {
+    const {
+        title, description, type, sprint, status, assignee,
+    } = body;
+
+    const issue = this.issues[ index ];
+
+    issue.title = title || issue.title;
+    issue.description = description || issue.description;
+    issue.type = type || issue.type;
+    issue.sprint = sprint;
+    issue.status = status || issue.status;
+    if ( assignee ) {
+        issue.assignee = assignee || issue.assignee;
+    }
 };
 
 module.exports = mongoose.model( "Project", projectSchema );
