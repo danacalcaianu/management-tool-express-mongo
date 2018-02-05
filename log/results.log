@@ -890,3 +890,36 @@
 {"level":"warn","message":"Warning message","timestamp":"22:56:57"}
 {"level":"info","message":"Info message","timestamp":"23:00:10"}
 {"level":"warn","message":"Warning message","timestamp":"23:00:10"}
+{"level":"info","message":"Info message","timestamp":"15:17:01"}
+{"level":"warn","message":"Warning message","timestamp":"15:17:01"}
+{"level":"info","message":"Info message","timestamp":"15:27:29"}
+{"level":"warn","message":"Warning message","timestamp":"15:27:29"}
+{"level":"error","message":"TypeError: Cannot read property 'id' of null\n    at exports.addProject (/home/dana/Desktop/management-tool-express-mongo/app/controllers/usersController.js:50:28)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/management-tool-express-mongo/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/management-tool-express-mongo/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:160:7)","timestamp":"15:28:35"}
+{"level":"error","message":"TypeError: Cannot read property 'id' of null\n    at exports.addProject (/home/dana/Desktop/management-tool-express-mongo/app/controllers/usersController.js:50:28)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/management-tool-express-mongo/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/management-tool-express-mongo/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:160:7)","timestamp":"15:28:41"}
+{"level":"error","message":"TypeError: Cannot read property 'id' of null\n    at exports.addProject (/home/dana/Desktop/management-tool-express-mongo/app/controllers/usersController.js:50:28)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/management-tool-express-mongo/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/management-tool-express-mongo/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:160:7)","timestamp":"15:29:34"}
+{"level":"info","message":"Info message","timestamp":"15:29:49"}
+{"level":"warn","message":"Warning message","timestamp":"15:29:49"}
+{"level":"error","message":"TypeError: Cannot read property 'id' of null\n    at exports.addProject (/home/dana/Desktop/management-tool-express-mongo/app/controllers/usersController.js:50:28)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/management-tool-express-mongo/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/management-tool-express-mongo/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:160:7)","timestamp":"15:29:54"}
+{"level":"error","message":"TypeError: Cannot read property 'id' of null\n    at exports.addProject (/home/dana/Desktop/management-tool-express-mongo/app/controllers/usersController.js:50:28)\n    at Layer.handle [as handle_request] (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/dana/Desktop/management-tool-express-mongo/node_modules/express/lib/router/route.js:137:13)\n    at Collection.findOne.exec (/home/dana/Desktop/management-tool-express-mongo/app/middlewares/checkExistingModel.js:37:20)\n    at /home/dana/Desktop/management-tool-express-mongo/node_modules/mongoose/lib/query.js:2839:18\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:160:7)","timestamp":"15:31:26"}
+{"level":"info","message":"Info message","timestamp":"15:42:09"}
+{"level":"warn","message":"Warning message","timestamp":"15:42:09"}
+{"level":"info","message":"Info message","timestamp":"11:54:21"}
+{"level":"warn","message":"Warning message","timestamp":"11:54:21"}
+{"level":"info","message":"Info message","timestamp":"18:37:22"}
+{"level":"warn","message":"Warning message","timestamp":"18:37:22"}
+{"level":"info","message":"Info message","timestamp":"22:30:15"}
+{"level":"warn","message":"Warning message","timestamp":"22:30:15"}
+{"level":"info","message":"Info message","timestamp":"22:59:22"}
+{"level":"warn","message":"Warning message","timestamp":"22:59:22"}
+{"level":"info","message":"Info message","timestamp":"22:59:30"}
+{"level":"warn","message":"Warning message","timestamp":"22:59:30"}
+{"level":"info","message":"Info message","timestamp":"23:01:40"}
+{"level":"warn","message":"Warning message","timestamp":"23:01:40"}
+{"level":"info","message":"Info message","timestamp":"23:01:57"}
+{"level":"warn","message":"Warning message","timestamp":"23:01:57"}
+{"level":"info","message":"Info message","timestamp":"23:02:38"}
+{"level":"warn","message":"Warning message","timestamp":"23:02:38"}
+{"level":"info","message":"Info message","timestamp":"23:03:12"}
+{"level":"warn","message":"Warning message","timestamp":"23:03:12"}
+{"level":"info","message":"Info message","timestamp":"23:03:39"}
+{"level":"warn","message":"Warning message","timestamp":"23:03:39"}

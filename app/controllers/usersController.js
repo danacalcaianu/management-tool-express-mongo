@@ -18,10 +18,11 @@ exports.register = ( req, res ) => {
 
 exports.login = ( req, res ) => {
     const { token } = req;
-
+    const { user }= req;
     return res.json( {
         success: true,
         token,
+        user,
     } );
 };
 
